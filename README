@@ -1,0 +1,27 @@
+IsbnValidation
+==============
+
+Custom ActiveRecord Validation for International Standard Book Number (ISBN) fields.
+Supports both ISBN-10 and ISBN-13. Will guarantee that validated fields contain valid
+ISBNs.
+
+Default behavior is to allow either ISBN-10 or ISBN-13, but this can be altered by
+specifying the :with option as shown in the example below.
+
+For more information on ISBN, see http://en.wikipedia.org/wiki/Isbn
+
+Installation
+============
+
+ruby script/plugin install git://github.com/zapnap/isbn_validation
+
+Example
+=======
+
+class Book < ActiveRecord::Base
+  validates_isbn :isbn
+  validates_isbn :isbn10, :with => :isbn10
+  validates_isbn :isbn13, :with => :isbn13
+end
+
+Copyright (c) 2008 Nick Plante, released under the MIT license
