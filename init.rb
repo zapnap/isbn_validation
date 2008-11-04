@@ -1,2 +1,1 @@
-require 'isbn_validation'
-ActiveRecord::Base.send(:extend, Zerosum::ValidationExtensions::IsbnValidation)
+require File.dirname(__FILE__) + '/rails/init.rb'
