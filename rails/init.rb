@@ -1,2 +1,5 @@
 require 'isbn_validation'
-ActiveRecord::Base.send(:extend, Zerosum::ValidationExtensions::IsbnValidation)
+
+ActiveRecord::Base.class_eval do
+  extend Zerosum::ValidationExtensions::IsbnValidation
+end
