@@ -46,7 +46,7 @@ module Zerosum
       end
 
       def validate_with_isbn10(isbn) #:nodoc:
-        if isbn.match(ISBN10_REGEX)
+        if (isbn || '').match(ISBN10_REGEX)
           isbn_values = isbn.upcase.gsub(/\ |-/, '').split('')
           check_digit = isbn_values.pop # last digit is check digit
           check_digit = (check_digit == 'X') ? 10 : check_digit.to_i
@@ -63,7 +63,7 @@ module Zerosum
       end
 
       def validate_with_isbn13(isbn) #:nodoc:
-        if isbn.match(ISBN13_REGEX)
+        if (isbn || '').match(ISBN13_REGEX)
           isbn_values = isbn.upcase.gsub(/\ |-/, '').split('')
           check_digit = isbn_values.pop.to_i # last digit is check digit
 
