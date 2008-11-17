@@ -24,11 +24,11 @@ end
 spec = Gem::Specification.new do |s|
   s.name        = %q{isbn_validation}
   s.name        = %q{isbn_validation}
-  s.version     = "0.1.0"
+  s.version     = "0.1.1"
   s.summary     = %q{isbn_validation adds an isbn validation routine to active record models.}
   s.description = %q{isbn_validation adds an isbn validation routine to active record models.}
 
-  s.files        = FileList['[A-Z]*', '{lib,test,rails}/**/*.rb']
+  s.files        = FileList['[A-Z]*', '{lib,test}/**/*.rb']
   s.require_path = 'lib'
   s.test_files   = Dir[*['test/**/*_test.rb']]
 
