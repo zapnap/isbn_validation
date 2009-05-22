@@ -89,4 +89,9 @@ class IsbnValidationTest < Test::Unit::TestCase
     @book.valid?
     assert_equal 'is too fantastical!', @book.errors.on(:isbn)
   end
+  
+  def test_isbn13_with_zero_check_digit_should_validate
+    @book.isbn = '978-1-60746-006-0'
+    assert @book.valid?
+  end
 end

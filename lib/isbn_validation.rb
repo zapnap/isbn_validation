@@ -73,7 +73,10 @@ module Zerosum
             sum += multiplier * value.to_i
           end
 
-          (10 - (sum % 10)) == check_digit
+          result = (10 - (sum % 10))
+          result = 0 if result == 10
+
+          result == check_digit
         else
           false
         end
