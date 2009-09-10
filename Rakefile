@@ -24,7 +24,7 @@ end
 spec = Gem::Specification.new do |s|
   s.name        = %q{isbn_validation}
   s.name        = %q{isbn_validation}
-  s.version     = "0.1.1"
+  s.version     = "0.1.2"
   s.summary     = %q{isbn_validation adds an isbn validation routine to active record models.}
   s.description = %q{isbn_validation adds an isbn validation routine to active record models.}
 
