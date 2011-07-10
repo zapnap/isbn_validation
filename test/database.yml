@@ -1,9 +1,9 @@
 sqlite:
   :adapter: sqlite
-  :dbfile: isbn_validation.sqlite
+  :database: isbn_validation.sqlite
 sqlite3:
   :adapter: sqlite3
-  :dbfile: isbn_validation.sqlite3
+  :database: isbn_validation.sqlite3
 postgresql:
   :adapter: postgresql
   :username: postgres
