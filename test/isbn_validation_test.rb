@@ -87,7 +87,7 @@ class IsbnValidationTest < Test::Unit::TestCase
   def test_should_have_custom_error_message
     @book.isbn = '978-159059AAAAAA'
     @book.valid?
-    assert_equal 'is too fantastical!', @book.errors.on(:isbn)
+    assert_equal 'is too fantastical!', @book.errors[:isbn].first
   end
   
   def test_isbn13_with_zero_check_digit_should_validate

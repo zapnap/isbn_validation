@@ -1,5 +1,1 @@
-require 'isbn_validation'
-
-ActiveRecord::Base.class_eval do
-  extend Zerosum::ValidationExtensions::IsbnValidation
-end
+require File.dirname(__FILE__) + '/lib/isbn_validation'
