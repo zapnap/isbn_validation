@@ -1,25 +1,22 @@
 # IsbnValidation
 
-Custom ActiveRecord Validation for International Standard Book Number (ISBN) fields.
-Supports both ISBN-10 and ISBN-13. Will guarantee that validated fields contain valid
-ISBNs.
+Custom ActiveRecord Validation for International Standard Book Number (ISBN)
+fields. Supports both ISBN-10 and ISBN-13. Will guarantee that validated fields
+contain valid ISBNs.
 
-Default behaviour is to allow either ISBN-10 or ISBN-13, but this can be altered by specifying the :with option as shown in the example below.
+Default behaviour is to allow either ISBN-10 or ISBN-13, but this can be
+altered by specifying the :with option as shown in the example below.
 
 For more information on ISBN, see http://en.wikipedia.org/wiki/Isbn
 
 ## Installation
 
-### Rails 3
-This fork of ISBN Validation is *not* backward compatible and would work only on Rails 3.0.
-
 To use it, add it to your Gemfile:
 
-    gem 'isbn_validation', :git => 'git@github.com:Omer/isbn_validation.git'
+    gem 'isbn_validation'
 
-### Rails 2
-
-Please refer to the [original repo](https://github.com/zapnap/isbn_validation)
+The current version of isbn_validation only supports Rails 3. For Rails 2.x
+support, please use v0.1.2.
 
 ## Example
 
@@ -33,7 +30,7 @@ Please refer to the [original repo](https://github.com/zapnap/isbn_validation)
 
 ## Contributors
 
-* Nick Plante - Original Author
+* Nick Plante
 * Omer Jakobinsky - Rails 3.0 compatibility
 
-Copyright &copy; 2008 Nick Plante, released under the MIT license
+Copyright &copy; 2011 Nick Plante, released under the MIT license
