@@ -6,9 +6,9 @@ require "isbn_validation/version"
 # but this behavior can be modified using configuration options (as shown below).
 #
 #   class Book < ActiveRecord::Base
-#     validates_isbn :isbn
-#     #validates_isbn :isbn10, :with => :isbn10
-#     #validates_isbn :isbn13, :with => :isbn13
+#     validates :isbn, :isbn_format => true
+#     # validates_isbn :isbn10, :isbn_format => { :with => :isbn10 }
+#     # validates_isbn :isbn13, :isbn_format => { :with => :isbn13 }
 #   end
 #
 # Configuration options:
@@ -34,23 +34,24 @@ module ValidationExtensions
 
     class IsbnFormatValidator < ActiveModel::EachValidator
       def initialize(options)
-        options[:message]   ||= "is not a valid ISBN code"
-        options[:allow_nil] ||= false
+        options[:message]     ||= "is not a valid ISBN code"
+        options[:allow_nil]   ||= false
+        options[:allow_blank] ||= false
         super(options)
       end
 
       def validate_each(record, attribute, value)
         valid_isbn = case options[:with]
-                     when :isbn10, nil
+                     when :isbn10
                        validate_with_isbn10(value)
                      when :isbn13
                        validate_with_isbn13(value)
-                     else 
-                       false
+                     else
+                       validate_with_isbn10(value) || validate_with_isbn13(value)
                      end
 
-        unless valid_isbn || ((value.blank? && options[:allow_nil]))
-          record.errors.add(attribute, options[:message]) 
+        unless valid_isbn || (value.nil? && options[:allow_nil]) || (value.blank? && options[:allow_blank])
+          record.errors.add(attribute, options[:message])
         end
       end
 
@@ -93,7 +94,6 @@ module ValidationExtensions
         end
       end
     end
-
 
     module ClassMethods
       def validates_isbn(*attr_names)

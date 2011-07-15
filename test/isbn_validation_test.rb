@@ -32,6 +32,15 @@ class IsbnValidationTest < Test::Unit::TestCase
     assert isbn.match(ValidationExtensions::IsbnValidation::ISBN13_REGEX)
   end
 
+  def test_isbn_should_match_either_isbn10_or_isbn13
+    book = Book.new
+    book.isbn = 'invalid'
+    assert !book.valid?
+    book.isbn = '1590599934'
+    assert book.valid?
+    book.isbn = '9781590599938'
+    assert book.valid?
+  end
 
   def test_isbn10_should_pass_check_digit_verification
     book = Book10.new
@@ -51,7 +60,6 @@ class IsbnValidationTest < Test::Unit::TestCase
     assert book.valid?
   end
 
-
   def test_isbn13_should_pass_check_digit_verification
     book = Book13.new
     book.isbn = '978-1590599938'
@@ -70,7 +78,6 @@ class IsbnValidationTest < Test::Unit::TestCase
     assert book.valid?
   end
 
-
   def test_isbn_should_be_valid_to_isbn10_by_default
     book = Book.new
     book.isbn = '1590599934'
@@ -83,17 +90,31 @@ class IsbnValidationTest < Test::Unit::TestCase
     book.valid?
     assert_equal 'is too fantastical!', book.errors[:isbn].first
   end
-  
+
   def test_blank_should_not_be_valid_by_default
     book = Book13.new
     book.isbn = ''
     book.valid?
     assert_equal 'is not a valid ISBN code', book.errors[:isbn].first
   end
-  
+
   def test_should_have_an_option_to_allow_nil
+    book = Book13.new
+    book.isbn = nil
+    assert book.valid?
+  end
+
+  def test_should_have_an_option_to_allow_blank
     book = Book10.new
     book.isbn = ''
+    assert book.valid?
+  end
+
+  def test_should_support_old_syntax
+    book = OldBook.new
+    book.isbn = ''
+    assert !book.valid?
+    book.isbn = '1590599934'
     assert book.valid?
   end
 end
