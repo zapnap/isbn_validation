@@ -21,7 +21,7 @@ support, please use v0.1.2.
 ## Example
 
     class Book < ActiveRecord::Base
-      validates :isbn, :isbn_format => true
+      validates :isbn,   :isbn_format => true
       validates :isbn10, :isbn_format => { :with => :isbn10 }
       validates :isbn13, :isbn_format => { :with => :isbn13 }
     end
