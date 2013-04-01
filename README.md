@@ -33,4 +33,4 @@ support, please use v0.1.2.
 * Nick Plante
 * Omer Jakobinsky - Rails 3.0 compatibility
 
-Copyright &copy; 2011 Nick Plante, released under the MIT license
+Copyright &copy; 2013 Nick Plante, released under the MIT license
