@@ -60,6 +60,12 @@ class IsbnValidationTest < Test::Unit::TestCase
     assert book.valid?
   end
 
+  def test_isbn10_x_should_be_case_insensitive
+    book = Book10.new
+    book.isbn = '0-9722051-1-x'
+    assert book.valid?
+  end
+
   def test_isbn13_should_pass_check_digit_verification
     book = Book13.new
     book.isbn = '978-1590599938'

@@ -25,8 +25,8 @@ require "isbn_validation/version"
 #   method, proc or string should return or evaluate to a true or false value.
 module ValidationExtensions
   module IsbnValidation
-    ISBN10_REGEX = /^(?:\d[\ |-]?){9}[\d|X]$/
-    ISBN13_REGEX = /^(?:\d[\ |-]?){13}$/
+    ISBN10_REGEX = /^(?:\d[\ |-]?){9}[\d|X]$/i
+    ISBN13_REGEX = /^(?:\d[\ |-]?){13}$/i
 
     def self.included(base)
       base.extend(ClassMethods)
@@ -61,7 +61,7 @@ module ValidationExtensions
         if (isbn || '').match(ISBN10_REGEX)
           isbn_values = isbn.upcase.gsub(/\ |-/, '').split('')
           check_digit = isbn_values.pop # last digit is check digit
-          check_digit = (check_digit == 'X') ? 10 : check_digit.to_i
+          check_digit = (check_digit.upcase == 'X') ? 10 : check_digit.to_i
 
           sum = 0
           isbn_values.each_with_index do |value, index|
