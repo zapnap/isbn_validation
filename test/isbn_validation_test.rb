@@ -1,38 +1,38 @@
 require File.dirname(__FILE__) + '/test_helper'
 require File.dirname(__FILE__) + '/models'
 
-class IsbnValidationTest < Test::Unit::TestCase
-  def test_isbn10_should_match_regex
+class IsbnValidationTest < ActiveSupport::TestCase
+  test "isbn10 should match regex" do
     isbn = '1590599934'
     assert isbn.match(ValidationExtensions::IsbnValidation::ISBN10_REGEX)
   end
 
-  def test_isbn10_should_not_match_regex
+  test "isbn10 should not match regex" do
     isbn = 'abc123ab3344'
     assert !isbn.match(ValidationExtensions::IsbnValidation::ISBN10_REGEX)
   end
 
-  def test_isbn10_with_dashes_and_spaces_should_match_regex
+  test "isbn10 with dashes and spaces should match regex" do
     isbn = '159-059 9934'
     assert isbn.match(ValidationExtensions::IsbnValidation::ISBN10_REGEX)
   end
 
-  def test_isbn13_should_match_regex
+  test "isbn13 should match regex" do
     isbn = '9781590599938'
     assert isbn.match(ValidationExtensions::IsbnValidation::ISBN13_REGEX)
   end
 
-  def test_isbn13_should_not_match_regex
+  test "isbn13 should not match regex" do
     isbn = '9991a9010599938'
     assert !isbn.match(ValidationExtensions::IsbnValidation::ISBN13_REGEX)
   end
 
-  def test_isbn13_with_dashes_and_spaces_should_match_regex
+  test "isbn13 with dashes and spaces should match regex" do
     isbn = '978-159059 9938'
     assert isbn.match(ValidationExtensions::IsbnValidation::ISBN13_REGEX)
   end
 
-  def test_isbn_should_match_either_isbn10_or_isbn13
+  test "isbn should match either isbn10 or isbn13" do
     book = Book.new
     book.isbn = 'invalid'
     assert !book.valid?
@@ -42,81 +42,81 @@ class IsbnValidationTest < Test::Unit::TestCase
     assert book.valid?
   end
 
-  def test_isbn10_should_pass_check_digit_verification
+  test "isbn10 should pass check digit verification" do
     book = Book10.new
     book.isbn = '159059993-4'
     assert book.valid?
   end
 
-  def test_isbn10_should_fail_check_digit_verification
+  test "isbn10 should fail check digit verification" do
     book = Book10.new
     book.isbn = '159059993-0'
     assert !book.valid?
   end
 
-  def test_isbn10_should_handle_x_character_checksum
+  test "isbn10 should handle x character checksum" do
     book = Book10.new
     book.isbn = '0-9722051-1-X'
     assert book.valid?
   end
 
-  def test_isbn10_x_should_be_case_insensitive
+  test "isbn10 x should be case insensitive" do
     book = Book10.new
     book.isbn = '0-9722051-1-x'
     assert book.valid?
   end
 
-  def test_isbn13_should_pass_check_digit_verification
+  test "isbn13 should pass check digit verification" do
     book = Book13.new
     book.isbn = '978-1590599938'
     assert book.valid?
   end
 
-  def test_isbn13_should_fail_check_digit_verification
+  test "isbn13 should fail check digit verification" do
     book = Book13.new
     book.isbn = '978-1590599934'
     assert !book.valid?
   end
 
-  def test_isbn13_with_zero_check_digit_should_validate
+  test "isbn13 with zero check digit should validate" do
     book = Book13.new
     book.isbn = '978-1-60746-006-0'
     assert book.valid?
   end
 
-  def test_isbn_should_be_valid_to_isbn10_by_default
+  test "isbn should be valid to isbn10 by default" do
     book = Book.new
     book.isbn = '1590599934'
     assert book.valid?
   end
 
-  def test_should_have_custom_error_message
+  test "has custom error message" do
     book = Book.new
     book.isbn = '978-159059AAAAAA'
     book.valid?
     assert_equal 'is too fantastical!', book.errors[:isbn].first
   end
 
-  def test_blank_should_not_be_valid_by_default
+  test "blank should not be valid by default" do
     book = Book13.new
     book.isbn = ''
     book.valid?
     assert_equal 'is not a valid ISBN code', book.errors[:isbn].first
   end
 
-  def test_should_have_an_option_to_allow_nil
+  test "should have an option to allow nil" do
     book = Book13.new
     book.isbn = nil
     assert book.valid?
   end
 
-  def test_should_have_an_option_to_allow_blank
+  test "should have an option to allow blank" do
     book = Book10.new
     book.isbn = ''
     assert book.valid?
   end
 
-  def test_should_support_old_syntax
+  test "should support old syntax" do
     book = OldBook.new
     book.isbn = ''
     assert !book.valid?

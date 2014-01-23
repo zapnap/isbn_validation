@@ -100,3 +100,4 @@ module ValidationExtensions
 end
 
 ActiveModel::Validations::HelperMethods.send(:include, ValidationExtensions::IsbnValidation::HelperMethods)
+ActiveModel::Validations::IsbnFormatValidator = ValidationExtensions::IsbnValidation::IsbnFormatValidator

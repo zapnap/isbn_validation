@@ -9,7 +9,7 @@ task :default => :test
 
 desc 'Test the isbn_validation plugin.'
 Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
+  t.libs << 'lib' << 'test'
   t.pattern = 'test/**/*_test.rb'
   t.verbose = true
 end

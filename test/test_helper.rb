@@ -3,9 +3,11 @@ RAILS_ROOT = File.dirname(__FILE__)
 
 require 'logger'
 require 'rubygems'
-require 'test/unit'
+require 'active_model'
+require 'active_model/validations'
 require 'active_record'
-require "active_record/test_case"
+require 'active_support/test_case'
+require 'minitest/autorun'
 require "#{File.dirname(__FILE__)}/../init"
 
 config = YAML::load(IO.read(File.dirname(__FILE__) + '/database.yml'))
