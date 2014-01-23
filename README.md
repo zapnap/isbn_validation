@@ -15,7 +15,7 @@ To use it, add it to your Gemfile:
 
     gem 'isbn_validation'
 
-The current version of isbn_validation only supports Rails 3. For Rails 2.x
+The current version of isbn_validation only supports Rails 3+. For Rails 2.x
 support, please use v0.1.2.
 
 ## Example
@@ -26,11 +26,4 @@ support, please use v0.1.2.
       validates :isbn13, :isbn_format => { :with => :isbn13 }
     end
 
-------
-
-## Contributors
-
-* Nick Plante
-* Omer Jakobinsky - Rails 3.0 compatibility
-
-Copyright &copy; 2013 Nick Plante, released under the MIT license
+Copyright &copy; 2014 Nick Plante, released under the MIT license
