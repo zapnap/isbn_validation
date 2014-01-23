@@ -102,5 +102,3 @@ module ValidationExtensions
     end
   end
 end
-
-ActiveRecord::Base.send(:include, ValidationExtensions::IsbnValidation)
