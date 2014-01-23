@@ -28,10 +28,6 @@ module ValidationExtensions
     ISBN10_REGEX = /^(?:\d[\ |-]?){9}[\d|X]$/i
     ISBN13_REGEX = /^(?:\d[\ |-]?){13}$/i
 
-    def self.included(base)
-      base.extend(ClassMethods)
-    end
-
     class IsbnFormatValidator < ActiveModel::EachValidator
       def initialize(options)
         options[:message]     ||= "is not a valid ISBN code"
@@ -95,7 +91,7 @@ module ValidationExtensions
       end
     end
 
-    module ClassMethods
+    module HelperMethods
       def validates_isbn(*attr_names)
         validates_with IsbnFormatValidator, _merge_attributes(attr_names)
       end
@@ -103,4 +99,4 @@ module ValidationExtensions
   end
 end
 
-ActiveRecord::Base.send(:include, ValidationExtensions::IsbnValidation)
+ActiveModel::Validations::HelperMethods.send(:include, ValidationExtensions::IsbnValidation::HelperMethods)
