@@ -6,9 +6,9 @@ require "isbn_validation/version"
 # but this behavior can be modified using configuration options (as shown below).
 #
 #   class Book < ActiveRecord::Base
-#     validates :isbn, :isbn_format => true
-#     # validates_isbn :isbn10, :isbn_format => { :with => :isbn10 }
-#     # validates_isbn :isbn13, :isbn_format => { :with => :isbn13 }
+#     validates :isbn, isbn_format: true
+#     # validates :isbn10, isbn_format: { with: :isbn10 }
+#     # validates :isbn13, isbn_format: { with: :isbn13 }
 #   end
 #
 # Configuration options:
