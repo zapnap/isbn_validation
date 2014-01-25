@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["Nick Plante"]
   s.email   = ["nap@zerosum.org"]
   s.description = "isbn_validation adds an isbn validation routine to active record models."
+  s.homepage = 'https://github.com/zapnap/isbn_validation'
 
   s.extra_rdoc_files = %w(README.md MIT-LICENSE)
   s.files            = Dir.glob("lib/**/*") + %w(README.md MIT-LICENSE)
