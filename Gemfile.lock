@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    isbn_validation (1.2.1)
+    isbn_validation (1.2.2)
       activerecord (>= 3)
 
 GEM
