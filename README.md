@@ -26,4 +26,4 @@ support, please use v0.1.2.
       validates :isbn13, :isbn_format => { :with => :isbn13 }
     end
 
-Copyright &copy; 2014 Nick Plante, released under the MIT license
+Copyright &copy; 2015 Nick Plante, released under the MIT license
