@@ -32,6 +32,16 @@ class IsbnValidationTest < ActiveSupport::TestCase
     assert isbn.match(ValidationExtensions::IsbnValidation::ISBN13_REGEX)
   end
 
+  test "isbn13 should start with 978 or 979" do
+    book = Book.new
+    book.isbn = '0123456789012'
+    assert !book.valid?
+    book.isbn = '9781590599938'
+    assert book.valid?
+    book.isbn = '979-10-90636-07-1'
+    assert book.valid?
+  end
+
   test "isbn should match either isbn10 or isbn13" do
     book = Book.new
     book.isbn = 'invalid'

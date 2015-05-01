@@ -73,6 +73,7 @@ module ValidationExtensions
       def validate_with_isbn13(isbn) #:nodoc:
         if (isbn || '').match(ISBN13_REGEX)
           isbn_values = isbn.upcase.gsub(/\ |-/, '').split('')
+          return false if !isbn_values[0..2].join('').match(/(978|979)/)
           check_digit = isbn_values.pop.to_i # last digit is check digit
 
           sum = 0
